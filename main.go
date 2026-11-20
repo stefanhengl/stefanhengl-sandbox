@@ -1,7 +1,25 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+)
 
 func main() {
-	fmt.Println("Hello, world!")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "Hello, world!")
+	})
+	http.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+	})
+
+	log.Printf("listening on :%s", port)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
