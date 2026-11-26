@@ -1,10 +1,10 @@
 line 1
 line 2
-line 3
+line 3 changed in D
 line 4
 line 5
 line 6
-line 7 rewritten
+line 7 rewritten again in D
 line 8
 line 9
 line 10
